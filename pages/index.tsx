@@ -9,6 +9,7 @@ import {SysUser} from "../types/user";
 import {user} from "./api/user";
 import {Space, Typography} from "@douyinfe/semi-ui";
 import MusicPlayer from "../components/MusicPlayer";
+import ClockCalendar from "../components/ClockCalendar";
 
 const Home: NextPage = ({user}:any) => {
   return (
@@ -23,8 +24,16 @@ export function BlogHomeLayout ({user}:{user:SysUser}){
     return <><MainLayout header={<BlogHeader/>}
                        content={<BlogHomeContent/>}
                        leftSider={<LeftSider user={user}/>}
-                       rightSider={<HomeSider/>}
+                       rightSider={<RightSider user={user}/>}
                        footer={<BlogFooter/>}></MainLayout>
+    </>
+}
+
+export function RightSider({user}:{user:SysUser}){
+    return <>
+        <Space spacing={"medium"} vertical={true} align={"start"}>
+            <ClockCalendar user={user}/>
+        </Space>
     </>
 }
 

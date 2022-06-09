@@ -1,8 +1,20 @@
 import Head from "next/head";
-import {Avatar, Dropdown, Nav} from "@douyinfe/semi-ui";
-import { IconHome, IconCloud,IconLink,IconBolt,IconAppCenter, IconSetting } from '@douyinfe/semi-icons';
+import {Avatar, Dropdown, Nav, Space, Switch} from "@douyinfe/semi-ui";
+import {
+    IconHome,
+    IconCloud,
+    IconLink,
+    IconBolt,
+    IconAppCenter,
+    IconSetting,
+    IconMoon,
+    IconLanguage
+} from '@douyinfe/semi-icons';
 import {OnSelectedData} from "@douyinfe/semi-ui/navigation";
-
+import {useRecoilState} from "recoil";
+import {darkMode, langMode} from "../store";
+import cn from "classnames";
+import { Tooltip } from '@douyinfe/semi-ui';
 // 网站标题
 const title = "天动万象";
 
@@ -49,21 +61,41 @@ const blogHeader = {
     text: "博客首页",
 }
 
-const footer =
-    <>
-        <Dropdown position={"bottomRight"}
-                  render={
-                <Dropdown.Menu>
-                    <Dropdown.Item>进入后台</Dropdown.Item>
-                    <Dropdown.Item>退出</Dropdown.Item>
-                </Dropdown.Menu>
-                }>
-            <Avatar size={"small"} color={"light-blue"} style={{ margin : 4 }}>BD</Avatar>
-            <span>Bytedancer</span>
-        </Dropdown>
-    </>
+
 
 export default function BlogHeader (){
+
+    const [darkModeState,setDarkMode] = useRecoilState(darkMode);
+
+    const [langModeState,setLangMode] = useRecoilState(langMode);
+
+
+    const handleClickMoon = ()=>{
+        setDarkMode((cur)=>!cur);
+        const body = document.body;
+        if (body.hasAttribute('theme-mode')) {
+            body.removeAttribute('theme-mode');
+        } else {
+            body.setAttribute('theme-mode', 'dark');
+        }
+    }
+
+    const handleClickLang = ()=>{
+        setLangMode((currVal)=>!currVal);
+    }
+
+    const footer = <>
+        <Space>
+            <Tooltip className={"can-click"} content={darkModeState ? "点击切换亮色模式" : "点击切换暗色模式"}>
+                <IconMoon size={"extra-large"} onClick={handleClickMoon}/>
+            </Tooltip>
+
+            <Tooltip className={"can-click"} content={langModeState ? "切换到中文" : "切换到英语"}>
+                <IconLanguage size={"extra-large"} onClick={handleClickLang}/>
+            </Tooltip>
+        </Space>
+    </>
+
     return (
         <>
             <Head>
