@@ -6,6 +6,7 @@ export type SysUser = {
     post?: string;
     email?: string;
     phone?: string;
+    
     articleNum?: number;
     readNum?: number;
     likeNum?: number;
