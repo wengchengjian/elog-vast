@@ -2,5 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
 }
+const semi = require('@douyinfe/semi-next').default({
 
-module.exports = nextConfig
+})
+module.exports = semi({
+  reactStrictMode: true,
+  images:{
+    domains:["joeschmoe.io","bing.ioliu.cn"]
+  }
+})

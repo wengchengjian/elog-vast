@@ -1,8 +1,15 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
+import {fetcher} from "../request";
+import {SWRConfig} from "swr";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+
+export default function MyApp({ Component, pageProps }: AppProps) {
+  return <SWRConfig value={{
+    refreshInterval: 3000,
+    fetcher: fetcher,
+  }}>
+    <Component {...pageProps}/>
+  </SWRConfig>
 }
 
-export default MyApp

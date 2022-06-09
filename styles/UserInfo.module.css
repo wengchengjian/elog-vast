@@ -1,0 +1,12 @@
+.user_info{
+    font-size: 14px;
+    max-width: 300px;
+}
+.username {
+    color: #fb6c28;
+}
+.post {
+    font-weight: 300;
+    font-size: 12px;
+    padding-left: 12px;
+}

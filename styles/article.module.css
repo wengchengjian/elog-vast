@@ -1,0 +1,12 @@
+.article_item {
+    height: 200px;
+}
+.article_img {
+    width: 200px;
+    height: 100px;
+}
+.article_view_footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
