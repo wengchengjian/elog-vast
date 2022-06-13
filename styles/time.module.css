@@ -1,0 +1,16 @@
+.time_box {
+  display: flex;
+  justify-content: center;
+  width:150px;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.time_date {
+  margin-right: 5px;
+}
+
+.time_time{
+  margin-right: 5px;
+}

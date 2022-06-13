@@ -8,6 +8,6 @@ const semi = require('@douyinfe/semi-next').default({
 module.exports = semi({
   reactStrictMode: true,
   images:{
-    domains:["joeschmoe.io","bing.ioliu.cn"]
+    domains:["joeschmoe.io","bing.ioliu.cn","sf6-cdn-tos.douyinstatic.com"]
   }
 })

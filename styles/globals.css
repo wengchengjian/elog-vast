@@ -6,12 +6,25 @@ body {
     margin: 0 !important;
 }
 
+.box_info{
+  font-size: 14px;
+  width: 300px;
+}
+
 .white-back-box {
     border-radius: 5px;
     margin: 8px;
     padding: 20px;
     background-color: #fff;
     border: 2px solid #fff;
+}
+
+.circular-green {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #00a854;
+  color: #fff;
 }
 
 .can-click {

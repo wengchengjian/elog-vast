@@ -1,0 +1,24 @@
+// .babelrc
+{
+  "presets": ["next/babel"],
+  "plugins": [
+    [
+      "import",
+      {
+        "libraryName": "antd-mobile",
+        "libraryDirectory": "es/components",
+        "style": false
+      }
+    ],
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@/*": "./*",
+          "@@/*": "./components/*"
+        }
+      }
+    ],
+    "superjson-next"
+  ]
+}

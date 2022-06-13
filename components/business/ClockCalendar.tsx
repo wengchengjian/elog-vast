@@ -1,9 +1,9 @@
-import styles from '../styles/UserInfo.module.css';
+import styles from '@/styles/UserInfo.module.css';
 import { Avatar, Space, Typography } from '@douyinfe/semi-ui';
-import { SysUser } from '../types/user';
+import { SysUser } from '@/types/user';
 import cn from 'classnames';
 import { Calendar } from 'antd';
-import { Moment } from 'moment';
+import moment, { Moment } from 'moment';
 import { ReactNode } from 'react';
 type UserInfoProps = {
   user: SysUser;
@@ -20,21 +20,27 @@ export default function ClockCalendar({ user }: UserInfoProps) {
   };
 
   const dateCellRender = (date: Moment) => {
-    return <div>{date.days()}</div>;
+    const today = moment(date.format('YYYY-MM-DD'));
+
+    const clockDate = user.clockInDate ?? [];
+    let res = <div>{date.date()}</div>;
+    clockDate.forEach((item) => {
+      if (moment(item).isSame(today)) {
+        res = <div className="circular-green">{date.date()}</div>;
+      }
+    });
+    return res;
   };
 
   return (
     <>
-      <Space
-        className={cn(['white-back-box', `${styles.user_info}`])}
-        vertical={true}
-        align={'start'}
-      >
-        <Title heading={6}>
-          已连续打卡<span style={{ color: 'green' }}>{5}</span>天
-        </Title>
-        <Calendar fullscreen={false} dateFullCellRender={dateCellRender} />
-      </Space>
+      <div>
+        <Calendar
+          mode="month"
+          fullscreen={false}
+          dateFullCellRender={dateCellRender}
+        />
+      </div>
     </>
   );
 }
