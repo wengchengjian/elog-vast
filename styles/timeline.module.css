@@ -1,0 +1,7 @@
+.time_line_item:hover {
+  color: coral;
+}
+
+.time_line_item {
+  cursor: pointer;
+}

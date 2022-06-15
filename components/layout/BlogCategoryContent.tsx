@@ -1,14 +1,22 @@
-import { List, Pagination, Space, Input, TagGroup } from '@douyinfe/semi-ui';
+import {
+  List,
+  Pagination,
+  Space,
+  Input,
+  TagGroup,
+  Tooltip,
+} from '@douyinfe/semi-ui';
 import { useEffect, useMemo, useState } from 'react';
 import useSWR from 'swr';
 import Image from 'next/image';
 import styles from '@/styles/article.module.css';
 import BlogPagination from '@@/business/BlogPagination';
 import usePage from '@/hooks/usePage';
-import { IconSearch } from '@douyinfe/semi-icons';
+import { IconSearch, IconHelpCircle } from '@douyinfe/semi-icons';
 import ArticleListContent from '@@/business/ArticleListContent';
 import { Category } from '@/types/Category';
 import TagList from '@@/base/TagList';
+import { useRouter } from 'next/router';
 
 export type CategoryContentProps = {
   categories: Category[];
@@ -21,6 +29,8 @@ export type CategoryContentProps = {
 export default function BlogCategoryContent({
   categories,
 }: CategoryContentProps) {
+  const router = useRouter();
+
   const [selectedKey, setSelectedKey] = useState('recentCreateArticle');
 
   const { page, pageSize, setPage, setPageSize } = usePage();
@@ -52,12 +62,24 @@ export default function BlogCategoryContent({
     return <>出现错误</>;
   }
 
+  const handleCLickSearchHelpIcon = () => {
+    router.push('/help/search');
+  };
+
   return (
     <>
       <Space vertical spacing={'loose'} style={{ width: '100%' }}>
         <Input
           style={{ width: '50%' }}
-          suffix={<IconSearch />}
+          prefix={<IconSearch />}
+          suffix={
+            <Tooltip content="搜索有关的帮助">
+              <IconHelpCircle
+                onClick={handleCLickSearchHelpIcon}
+                style={{ cursor: 'pointer' }}
+              />
+            </Tooltip>
+          }
           placeholder="搜索文章"
           showClear
           maxLength={50}
