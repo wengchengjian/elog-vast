@@ -10,3 +10,14 @@
     display: flex;
     justify-content: space-between;
 }
+
+.article_list_item {
+  cursor: pointer;
+  transition: padding 0.3s ease;
+}
+
+.article_list_item:hover {
+  border: 2px solid #74759b;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}

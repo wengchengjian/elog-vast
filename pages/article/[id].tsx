@@ -1,6 +1,6 @@
-import BlogArticleItemDetailContent from '@/components/layout/BlogArticleItemDetailContent';
-import BlogFooter from '@/components/layout/BlogFooter';
-import BlogHeader from '@/components/layout/BlogHeader';
+import BlogArticleItemDetailContent from '@/components/layout/content/BlogArticleItemDetailContent';
+import BlogFooter from '@/components/layout/footer/BlogFooter';
+import BlogHeader from '@/components/layout/header/BlogHeadergHeader';
 import MainLayout from '@/components/layout/MainLayout';
 
 export default function ArticleItenDetailPage() {

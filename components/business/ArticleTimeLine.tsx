@@ -21,14 +21,9 @@ export default function ArticleTimeLine({
 }: ArticleTimeLineProps) {
   const router = useRouter();
 
-  console.log('====================================');
-  console.log(articles);
-  console.log('====================================');
   const timeLines = useMemo(() => {
     return transformToTimeMap(articles, type);
   }, [type, articles]);
-
-  console.log(timeLines);
 
   const handleClickTimelineItem = (id: string) => {
     // 跳转到文章详情页
@@ -44,8 +39,18 @@ export default function ArticleTimeLine({
             const thisLineArticles = timeLines.get(timeKey);
             return (
               <Timeline.Item key={timeKey.toString()}>
-                <Collapse.Panel header={timeKey} itemKey={timeKey}>
-                  <Space vertical spacing={'medium'}>
+                <Collapse.Panel
+                  header={
+                    <Space>
+                      <span>{timeKey}</span>
+                      <span style={{ color: '#bc84a8' }}>
+                        ({thisLineArticles?.length ?? 0})
+                      </span>
+                    </Space>
+                  }
+                  itemKey={timeKey}
+                >
+                  <Space align="start" vertical spacing={'medium'}>
                     {thisLineArticles?.map((article) => {
                       return (
                         <Space

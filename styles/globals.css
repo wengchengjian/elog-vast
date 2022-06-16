@@ -6,6 +6,13 @@ body {
     margin: 0 !important;
 }
 
+.back_img_style {
+  /* background-image: url("/images/backgroud/src=http___i0.hdslb.com_bfs_article_010bec8e211f1c244f774fac7d5222eb20b7ddb8.jpg&refer=http___i0.hdslb.webp");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover; */
+}
+
 .box_info{
   font-size: 14px;
   width: 300px;

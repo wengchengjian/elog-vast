@@ -1,0 +1,17 @@
+.talk_under_item {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 300;
+  margin-top: 5px;
+}
+
+.talk_list_item {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.talk_list_item:hover {
+  transform: translateX(-150px);
+}

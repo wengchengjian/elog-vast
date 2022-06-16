@@ -6,6 +6,7 @@ import styles from '@/styles/article.module.css';
 import BlogPagination from '@@/business/BlogPagination';
 import usePage from '@/hooks/usePage';
 import ArticleListContent from '@@/business/ArticleListContent';
+import useRequest from '@/hooks/useRequest';
 /**
  * Tab栏切换时，客户端渲染数据
  * @constructor
@@ -23,7 +24,7 @@ export default function BlogHomeContent() {
     setPage(page);
     setPageSize(pageSize);
   };
-  const { data, error } = useSWR(
+  const { data, error,loading } = useRequest(
     `/api/article?type=${
       selectedKey ?? 'recentCreateArticle'
     }&page=${page}&pageSize=${pageSize}`
@@ -38,6 +39,7 @@ export default function BlogHomeContent() {
       <ArticleListContent
         data={data}
         page={page}
+        loading={loading}
         pageSize={pageSize}
         onPageChange={onPageChange}
         onSearchKeyChange={handleTabChange}

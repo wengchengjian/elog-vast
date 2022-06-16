@@ -29,7 +29,7 @@ export default function MainLayout({
     <>
       <Layout>
         <Header>{header}</Header>
-        <Layout hasSider={false}>
+        <Layout hasSider={false} className="back_img_style">
           <Row
             gutter={{ xs: 8, sm: 16, md: 24 }}
             type={'flex'}

@@ -22,14 +22,13 @@ import { useCallback, useMemo } from 'react';
 import Router, { useRouter } from 'next/router';
 import Image from 'next/image';
 
-
 // 菜单列表
 const items = [
   {
     itemKey: 'home',
     text: '首页',
     icon: <IconHome />,
-    path: '/home',
+    path: '/',
   },
   {
     itemKey: 'category',
@@ -141,7 +140,6 @@ export default function BlogHeader() {
 
   return (
     <>
-      
       <div style={{ width: '100%' }}>
         <Nav
           mode={'horizontal'}

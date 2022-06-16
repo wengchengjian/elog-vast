@@ -41,6 +41,7 @@ export type ArticleCommonSearchProps = {
 export type ArticleListContentProps = {
   data: any[];
   page: number;
+  loading: boolean;
   pageSize: number;
   onPageChange: (page: number, pageSize: number) => void;
 };
@@ -49,16 +50,16 @@ export default function ArticleListContent({
   data,
   page,
   pageSize,
+  loading,
   onPageChange,
   onSearchKeyChange,
 }: ArticleListContentProps & ArticleCommonSearchProps) {
-
   const renderItem = (item: any) => {
     return (
       <List.Item
         align={'flex-start'}
         key={item.id}
-        className={`${styles.article_item} white-back-box`}
+        className={`white-back-box ${styles.article_list_item}`}
         header={
           <div className={styles.article_img}>
             <Image
@@ -73,12 +74,6 @@ export default function ArticleListContent({
       />
     );
   };
-
-  let visible = false;
-
-  if (!data) {
-    visible = true;
-  }
 
   const placeholder = (
     <div>
@@ -101,7 +96,7 @@ export default function ArticleListContent({
           {tabs.map((item) => {
             return (
               <TabPane tab={item.tab} itemKey={item.itemKey} key={item.itemKey}>
-                <Skeleton loading={visible} active placeholder={placeholder}>
+                <Skeleton loading={loading} active placeholder={placeholder}>
                   <ListContent
                     data={data}
                     page={page}

@@ -17,6 +17,7 @@ import ArticleListContent from '@@/business/ArticleListContent';
 import { Category } from '@/types/Category';
 import TagList from '@@/base/TagList';
 import { useRouter } from 'next/router';
+import useRequest from '@/hooks/useRequest';
 
 export type CategoryContentProps = {
   categories: Category[];
@@ -48,7 +49,7 @@ export default function BlogCategoryContent({
     setPageSize(pageSize);
   };
 
-  const { data, error } = useSWR(
+  const { data, error, loading } = useRequest(
     `/api/article?type=${
       encodeURIComponent(selectedKey) ?? 'recentCreateArticle'
     }&category=${encodeURIComponent(
@@ -89,6 +90,7 @@ export default function BlogCategoryContent({
         <ArticleListContent
           data={data}
           page={page}
+          loading={loading}
           pageSize={pageSize}
           onPageChange={onPageChange}
           onSearchKeyChange={handleTabChange}

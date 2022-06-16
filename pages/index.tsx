@@ -1,8 +1,8 @@
 import type { GetServerSideProps, NextPage } from 'next';
-import BlogHeader from '@@/layout/BlogHeader';
-import BlogHomeContent from '@@/layout/BlogHomeContent';
+import BlogHeader from '@@/layout/header/BlogHeader';
+import BlogHomeContent from '@@/layout/content/BlogHomeContent';
 import UserInfo from '@@/business/UserInfo';
-import BlogFooter from '@@/layout/BlogFooter';
+import BlogFooter from '@@/layout/footer/BlogFooter';
 import MainLayout from '@@/layout/MainLayout';
 import { SysUser } from '@/types/user';
 import { user } from './api/user';
@@ -10,7 +10,7 @@ import { GetStaticProps } from 'next';
 import { Space, Typography } from '@douyinfe/semi-ui';
 import ClockCalendar from '@@/business/ClockCalendar';
 import TimeProgress from '@@/base/TimeProgress';
-import { InferGetServerSidePropsType  } from 'next';
+import { InferGetServerSidePropsType } from 'next';
 import LifeCountDown from '@@/business/LifeCountDown';
 import MusicAplayer, {
   AplayerAudioProps,

@@ -27,7 +27,7 @@ export default function SmallComponent({
         style={style}
         align={align ?? 'center'}
         vertical
-        className="white-back-box"
+        className="white-back-box box_info"
       >
         <Title heading={6} style={{ borderBottom: '2px solid #ccc' }}>
           {title}
