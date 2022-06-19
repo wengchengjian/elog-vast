@@ -23,6 +23,7 @@ export type TalkListContentProps = {
   data: any[];
   page: number;
   pageSize: number;
+  total: number;
   loading: boolean;
   onPageChange: (page: number, pageSize: number) => void;
 };
@@ -30,6 +31,7 @@ export type TalkListContentProps = {
 export default function TalkListContent({
   data,
   page,
+  total,
   pageSize,
   onPageChange,
   loading,
@@ -66,6 +68,7 @@ export default function TalkListContent({
       <div style={{ width: '100%' }}>
         <Skeleton loading={loading} active placeholder={placeholder}>
           <ListContent
+            total={total}
             data={data}
             page={page}
             pageSize={pageSize}

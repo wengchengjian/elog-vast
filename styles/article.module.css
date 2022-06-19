@@ -21,3 +21,56 @@
   padding-top: 50px;
   padding-bottom: 50px;
 }
+
+.icon-button {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  background-color: #fff;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 4%);
+  cursor: pointer;
+  text-align: center;
+  font-size: 1.67rem;
+}
+
+.icon-button:hover {
+  border-color: #8a919f;
+}
+
+.sprite-icon {
+  color: #8a919f;
+  height: 100%;
+  width: 1em;
+  font-size: 1.67rem;
+  height: 1em;
+  fill: currentColor;
+  transition: all .15s linear;
+}
+
+.icon-button::after {
+  content: attr(data-badge);
+  position: absolute;
+  top: 0;
+  left: 75%;
+  height: 17px;
+  line-height: 17px;
+  padding: 0 5px;
+  border-radius: 9px;
+  font-size: 11px;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #c2c8d1;
+  color: #fff;
+}
+
+.button-sticky {
+  position: sticky;
+  top: 150px;
+  right: 20px;
+  margin: 8px;
+  transform: translate(0, 0);
+  transition: transform 500ms ease;
+}

@@ -14,6 +14,7 @@ export type ListContentProps = {
   data: any[];
   page: number;
   pageSize: number;
+  total: number;
   onPageChange: (page: number, pageSize: number) => void;
   renderItem: (item: any) => React.ReactNode;
 };
@@ -24,11 +25,17 @@ export default function ListContent({
   pageSize,
   onPageChange,
   renderItem,
+  total,
 }: ListContentProps) {
   return (
     <>
       <List dataSource={data ?? []} renderItem={renderItem} />
-      <BlogPagination page={page} pageSize={pageSize} onChange={onPageChange} />
+      <BlogPagination
+        total={total}
+        page={page}
+        pageSize={pageSize}
+        onChange={onPageChange}
+      />
     </>
   );
 }

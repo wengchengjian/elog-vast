@@ -88,7 +88,8 @@ export default function BlogCategoryContent({
         ></Input>
         <TagList tags={categories} onClick={(tag) => setCategory(tag.name)} />
         <ArticleListContent
-          data={data}
+          total={data?.total ?? 0}
+          data={data?.list ?? []}
           page={page}
           loading={loading}
           pageSize={pageSize}

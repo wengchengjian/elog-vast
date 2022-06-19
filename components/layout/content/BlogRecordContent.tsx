@@ -7,6 +7,7 @@ import { useMemo, useState } from 'react';
 import { TransformTimeMapType } from '@/utils';
 import useSWR from 'swr';
 import ArticlePlaceHolder from '@@/business/ArticlePlaceHolder';
+import useRequest from '@/hooks/useRequest';
 
 const Option = Select.Option;
 
@@ -19,7 +20,7 @@ export const TypeToCh = {
 export default function BlogRecordContent() {
   const [type, setType] = useState<TransformTimeMapType>('month');
 
-  const { data, error } = useSWR('/api/article');
+  const { data, error, loading } = useRequest('/api/article');
 
   const handleTypeChange = (value: any) => {
     setType(value as TransformTimeMapType);
@@ -39,11 +40,6 @@ export default function BlogRecordContent() {
     return <>暂无数据</>;
   }
 
-  let visible = false;
-
-  if (!data) {
-    visible = true;
-  }
   return (
     <>
       <SmallComponent
@@ -63,8 +59,8 @@ export default function BlogRecordContent() {
         align="start"
         style={{ width: '100%' }}
         content={
-          <Skeleton loading={visible} active placeholder={placeholder}>
-            <ArticleTimeLine articles={data ?? []} type={type} />
+          <Skeleton loading={loading} active placeholder={placeholder}>
+            <ArticleTimeLine articles={data?.list ?? []} type={type} />
           </Skeleton>
         }
       ></SmallComponent>

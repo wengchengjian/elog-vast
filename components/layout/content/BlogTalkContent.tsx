@@ -44,7 +44,8 @@ export default function BlogTalkContent() {
           onEnterPress={(e) => setSearchContent(e.currentTarget.value)}
         ></Input>
         <TalkListContent
-          data={data}
+          total={data?.total ?? 0}
+          data={data?.list ?? []}
           onPageChange={onPageChange}
           page={page}
           pageSize={pageSize}

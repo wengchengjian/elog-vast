@@ -1,5 +1,17 @@
 @import '~@douyinfe/semi-ui/dist/css/semi.min.css';
 @import '~antd/dist/antd.css';
+@import '~katex/dist/katex.min.css';
+@import '~markdown-navbar/dist/navbar.css';
+
+html {
+  font-size: 12px;
+  word-break: break-word;
+  font-family: SimSun;
+  text-rendering: optimizeLegibility;
+  color: #333;
+  background-color: #f4f5f5;
+}
+
 body {
     box-sizing: border-box;
     background-color: rgb(244, 245, 245);
@@ -19,11 +31,13 @@ body {
 }
 
 .white-back-box {
-    border-radius: 5px;
-    margin: 8px;
-    padding: 20px;
-    background-color: #fff;
-    border: 2px solid #fff;
+  width: 100%;
+  border-radius: 5px;
+  margin: 8px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  border: 2px solid #fff;
 }
 
 .circular-green {
@@ -40,4 +54,20 @@ body {
 
 .can-click:hover {
     background-color: #999999;
+}
+
+.action_btn {
+  cursor: pointer;
+}
+
+.action_btn:hover {
+  color: #2b73af;
+}
+
+.ip_style{
+  font-size:12px;
+  font-weight: 300;
+  background-color: #ccc;
+  padding:2px 8px;
+  margin: 0 10px;
 }

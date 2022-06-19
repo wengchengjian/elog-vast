@@ -23,7 +23,7 @@ export default function ArticleView({ article }: ArticleProps) {
         <Space>
           {(article.tags ?? []).map((tag) => {
             return (
-              <Tag key={tag.id} color={tag.color ?? 'blue'}>
+              <Tag key={tag.id} style={{ color: tag.color ?? 'blue' }}>
                 {tag.name}
               </Tag>
             );

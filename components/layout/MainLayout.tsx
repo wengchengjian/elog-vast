@@ -36,12 +36,18 @@ export default function MainLayout({
             justify={'center'}
             style={{ margin: '8px' }}
           >
-            <Col span={4}>{leftSider ? <Sider>{leftSider}</Sider> : null}</Col>
+            <Col span={4}>
+              {leftSider ? (
+                <Sider style={{ height: '100%' }}>{leftSider}</Sider>
+              ) : null}
+            </Col>
             <Col span={12}>
               <Content>{content}</Content>
             </Col>
             <Col span={4}>
-              {rightSider ? <Sider>{rightSider}</Sider> : null}
+              {rightSider ? (
+                <Sider style={{ height: '100%' }}>{rightSider}</Sider>
+              ) : null}
             </Col>
           </Row>
         </Layout>

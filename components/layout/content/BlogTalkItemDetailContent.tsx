@@ -1,8 +1,6 @@
-import { Article } from '@/types/article';
+import { Talk } from '@/types/talk';
 import ReactMarkDown from 'react-markdown';
 import markGfm from 'remark-gfm';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { okaidia as codeBackStyle } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import dynamic from 'next/dynamic';
@@ -13,28 +11,19 @@ import remarkToc from 'remark-toc';
 import { useCallback, useMemo, useState } from 'react';
 import rehypeRaw from 'rehype-raw';
 import BaseComment from '@/components/base/BaseComment';
-import MarkNav from 'markdown-navbar';
 import CommentListContent from '@/components/business/CommentListContent';
 import usePage from '@/hooks/usePage';
 import useRequest from '@/hooks/useRequest';
-// const dark = dynamic(
-//   () => import('react-syntax-highlighter/dist/esm/styles/prism'),
-//   { ssr: false }
-// );
 
-// const SyntaxHighlighter = dynamic(() => import('react-syntax-highlighter'), {
-//   ssr: false,
-// });
-
-export type BlogArticleItemDetailContentProps = {
-  article: Article;
+export type BlogTalkItemDetailContentProps = {
+  talk: Talk;
 };
 
 const { Paragraph, Title, Text } = Typography;
 
-export default function BlogArticleItemDetailContent({
-  article,
-}: BlogArticleItemDetailContentProps) {
+export default function BlogTalkItemDetailContent({
+  talk,
+}: BlogTalkItemDetailContentProps) {
   const [commentValue, setComment] = useState('');
   /**
    * 1->最新,2->最热,默认最新
@@ -54,63 +43,46 @@ export default function BlogArticleItemDetailContent({
 
   const { data, error, loading } = useRequest(
     `/api/comment?selectedKey=${selectedKey}&linkId=${
-      article.id
-    }&type=${1}&page=${page}&pageSize=${pageSize}`
+      talk.id
+    }&type=${2}&page=${page}&pageSize=${pageSize}`
   );
 
-  const getArticleContent = useCallback(() => {
+  const getTalkContent = useCallback(() => {
     return (
       <Space vertical spacing={'loose'} align="start">
-        <Title>{article.title}</Title>
         <Space>
-          <Avatar src={article.author.avatar}></Avatar>
+          <Avatar src={talk.createBy.avatar}></Avatar>
           <Space vertical align="start">
-            <Text>{article.author.nickname}</Text>
+            <div>
+              <Text>{talk.createBy.nickname}</Text>
+              <span className="ip_style">IP: {talk.territory}</span>
+            </div>
             <span style={{ fontSize: '14px', fontWeight: '300' }}>
               <span>
-                {moment(article.createTime).format('yyyy年MM月DD日 HH:mm')}
+                {moment(talk.createTime).format('yyyy年MM月DD日 HH:mm')}
               </span>
               &nbsp;·&nbsp;
-              <span>浏览{article.readNum}</span>
+              <span>浏览{talk.views}</span>
             </span>
           </Space>
         </Space>
-        <Image
-          src={article.img ?? 'https://bing.ioliu.cn/v1/rand?w=200&h=100'}
-          width={1200}
-          height={600}
-          alt="picture of the article"
-        />
+
         <div>
-          <ReactMarkDown
-            components={{
-              code({ node, inline, className, children, ...props }) {
-                const match = /language-(\w+)/.exec(className || '');
-                return !inline && match ? (
-                  <SyntaxHighlighter
-                    children={String(children).replace(/\n$/, '')}
-                    style={codeBackStyle}
-                    language={match[1]}
-                    PreTag="div"
-                    {...props}
-                  />
-                ) : (
-                  <code className={className} {...props}>
-                    {children}
-                  </code>
-                );
-              },
+          <Paragraph
+            ellipsis={{
+              rows: 6,
+              expandable: true,
+              collapsible: true,
+              collapseText: '折叠我吧',
+              onExpand: (bool, e) => console.log(bool, e),
             }}
-            remarkPlugins={[markGfm, remarkMath, remarkToc]}
-            rehypePlugins={[rehypeKatex, rehypeRaw]}
           >
-            {/* {article.content} */}
-            {article.content}
-          </ReactMarkDown>
+            {talk.content}
+          </Paragraph>
         </div>
       </Space>
     );
-  }, [article]);
+  }, [talk]);
 
   const getCommentComponent = useCallback(() => {
     return (
@@ -130,7 +102,7 @@ export default function BlogArticleItemDetailContent({
     );
   }, [commentValue]);
 
-  const getArticleComment = useCallback(() => {
+  const getTalkComment = useCallback(() => {
     return (
       <Space
         style={{ width: '100%' }}
@@ -172,11 +144,11 @@ export default function BlogArticleItemDetailContent({
   return (
     <>
       <Space vertical spacing={'loose'} align="start">
-        <div className={`white-back-box`}>{getArticleContent()}</div>
+        <div className={`white-back-box`}>{getTalkContent()}</div>
         <div id="basic-comment" className={`white-back-box`}>
           {getCommentComponent()}
         </div>
-        <div className={`white-back-box`}>{getArticleComment()}</div>
+        <div className={`white-back-box`}>{getTalkComment()}</div>
       </Space>
     </>
   );

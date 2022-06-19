@@ -24,7 +24,7 @@ export default function BlogHomeContent() {
     setPage(page);
     setPageSize(pageSize);
   };
-  const { data, error,loading } = useRequest(
+  const { data, error, loading } = useRequest(
     `/api/article?type=${
       selectedKey ?? 'recentCreateArticle'
     }&page=${page}&pageSize=${pageSize}`
@@ -37,7 +37,8 @@ export default function BlogHomeContent() {
   return (
     <>
       <ArticleListContent
-        data={data}
+        total={data?.total ?? 0}
+        data={data?.list ?? []}
         page={page}
         loading={loading}
         pageSize={pageSize}
