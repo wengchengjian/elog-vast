@@ -71,8 +71,14 @@ export type RightSiderProps = {
 export function RightSider({ user }: RightSiderProps) {
   return (
     <>
-      <Space spacing={'medium'} vertical={true} align={'start'}>
-        <SmallComponent
+      <Space
+        style={{ width: '100%' }}
+        spacing={'medium'}
+        vertical={true}
+        align={'start'}
+      >
+        {/* 打卡感觉没啥必要 */}
+        {/* <SmallComponent
           align="start"
           title={
             <>
@@ -87,7 +93,7 @@ export function RightSider({ user }: RightSiderProps) {
             </>
           }
           content={<ClockCalendar user={user} />}
-        />
+        /> */}
         <SmallComponent
           align="start"
           title={<>人生倒计时</>}

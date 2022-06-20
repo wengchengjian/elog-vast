@@ -8,3 +8,69 @@
 .card_style:hover{
     transform: scale(1.1);
 }
+
+.more_link {
+  position: absolute;
+  left: 10;
+  right: 0;
+  color: #2d2e36;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.link-help-box {
+  padding-left: 30px;
+  margin-bottom: 20px;
+}
+
+.link-help {
+  position: relative;
+  padding:8px 20px;
+  border-left: 4px solid #1d72f3;
+  background: #1d72f320;
+  color: #1d72f3;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.link-help-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.link-help .link-icon {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  font-size: 18px;
+  transition: all 0.5s ease;
+}
+
+.link-help:hover .link-icon {
+  transform: scale(2);
+  transform:  rotate(360deg);
+}
+
+
+.link-target{
+  cursor: pointer;
+  color: #FB6c28;
+  /* 背景不重复 */
+  background-repeat: no-repeat;
+  /* 设置（背景图片）高度和宽度。（宽度，高度）*/
+  background-size: 0 2px;
+  /* 设置背景图像的起始位置。 x, y*/
+  /* 控制线开始位置 */
+  /* 背景的开始位置 */
+  /* 0% 100% 从左到右 */
+  /* 100% 100% 从右到左*/
+  background-position: 50% 100%; /* 表示从中间开始向两边 */
+
+  background-image: linear-gradient(to right, #FB6c28, #FB6c28, #FB6c28);
+
+  transition: all .4s ease-in-out;
+}
+
+.link-target:hover{
+  background-size: 100% 1px;
+}
