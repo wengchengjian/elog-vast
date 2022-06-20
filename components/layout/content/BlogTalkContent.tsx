@@ -18,9 +18,11 @@ export default function BlogTalkContent() {
   const handleCLickSearchHelpIcon = () => {};
 
   const { data, error, loading } = useRequest(
-    `/api/talk?searchContent=${encodeURIComponent(
-      searchContent
-    )}&page=${page}&pageSize=${pageSize}`
+    '/api/talk',{
+      searchContent:encodeURIComponent(searchContent),
+      page,
+      pageSize
+    }
   );
 
   if (error) {

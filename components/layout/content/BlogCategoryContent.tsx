@@ -50,13 +50,13 @@ export default function BlogCategoryContent({
   };
 
   const { data, error, loading } = useRequest(
-    `/api/article?type=${
-      encodeURIComponent(selectedKey) ?? 'recentCreateArticle'
-    }&category=${encodeURIComponent(
-      selectCategory
-    )}&searchContent=${encodeURIComponent(
-      searchContent
-    )}&page=${page}&pageSize=${pageSize}`
+    '/api/article',{
+      selectedKey,
+      category:selectCategory,
+      searchContent:encodeURIComponent(searchContent),
+      page,
+      pageSize
+    }
   );
 
   if (error) {

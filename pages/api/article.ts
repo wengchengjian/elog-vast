@@ -126,14 +126,14 @@ export function generate() {
 
     "id": Random.id(),
     "title": Random.title(4, 16),
-    "description": Random.paragraph(16, 64),
+    "description": Random.cparagraph(16, 64),
     "img": "https://bing.ioliu.cn/v1/rand?w=1200&h=600",
     "content": markdown,
     "author": user,
     "category": {
       "id": Random.id(),
       "name": Random.name(),
-      "description": Random.paragraph(16, 64),
+      "description": Random.cparagraph(16, 64),
       "createTime": Random.datetime(),
       "updateTime": Random.datetime(),
     },
@@ -141,7 +141,7 @@ export function generate() {
       {
         "id": Random.id(),
         "name": Random.name(),
-        "description": Random.paragraph(16, 64),
+        "description": Random.cparagraph(16, 64),
         "color": Random.color(),
         "createTime": Random.datetime(),
         "updateTime": Random.datetime(),

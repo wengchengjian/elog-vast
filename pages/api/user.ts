@@ -19,7 +19,7 @@ export function generate() {
     email: Random.email(),
     post: "Java开发工程师",
     clockInDate: ["2022-6-8", "2022-6-9", "2022-6-10", "2022-6-7"],
-    description: Random.paragraph(3, 6)
+    description: Random.cparagraph(3, 6)
   });
 }
 

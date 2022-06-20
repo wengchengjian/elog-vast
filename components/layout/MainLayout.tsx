@@ -12,6 +12,9 @@ type LayoutProps = {
   rightSider?: JSX.Element;
   content: JSX.Element;
   footer: JSX.Element;
+  spans?:{
+    [key:string]:number
+  }
 };
 const { Paragraph, Title, Text } = Typography;
 
@@ -22,9 +25,11 @@ export default function MainLayout({
   rightSider,
   content,
   footer,
+  spans={}
 }: LayoutProps) {
   const audio: AudioProps[] = [];
   const model: string[] = [];
+
   return (
     <>
       <Layout>
@@ -36,15 +41,15 @@ export default function MainLayout({
             justify={'center'}
             style={{ margin: '8px' }}
           >
-            <Col span={4}>
+            <Col span={spans.leftSider ?? 4}>
               {leftSider ? (
                 <Sider style={{ height: '100%' }}>{leftSider}</Sider>
               ) : null}
             </Col>
-            <Col span={12}>
+            <Col span={spans.content ?? 12}>
               <Content>{content}</Content>
             </Col>
-            <Col span={4}>
+            <Col span={spans.rightSider ?? 4}>
               {rightSider ? (
                 <Sider style={{ height: '100%' }}>{rightSider}</Sider>
               ) : null}

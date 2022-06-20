@@ -16,7 +16,7 @@ const Random = Mock.Random;
 export function generate(type: number, linkId: string, replyTo?: SysUser) {
   return Mock.mock({
     id: Random.id(),
-    content: Random.paragraph(2, 4),
+    content: Random.cparagraph(2, 4),
     replyTo: replyTo ?? generateUser(),
     creator: generateUser(),
     children: [],

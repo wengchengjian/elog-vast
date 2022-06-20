@@ -13,6 +13,8 @@ import {
   IconSmallTriangleRight,
 } from '@douyinfe/semi-icons';
 import { useCallback, useMemo, useState } from 'react';
+import styles from "@/styles/comment.module.css";
+
 export type CommentViewProps = {
   comment: BlogComment;
 };
@@ -39,26 +41,13 @@ export default function CommentView({ comment }: CommentViewProps) {
     setOpen(!isOpen);
   }, [isOpen]);
 
-  const linkStyle = useMemo(
-    () => ({
-      position: 'absolute',
-      left: 10,
-      right: 0,
-      bottom: -5,
-      color: '#2d2e36',
-      fontWeight: 300,
-      cursor: 'pointer',
-    }),
-    []
-  );
-
   const showMore = useMemo(() => {
     return (
-      <a onClick={toggle} style={{ ...linkStyle }}>
+      <a onClick={toggle} className={styles['more_comment']}>
         {!isOpen ? '展开更多回复' : '收起'}
       </a>
     );
-  }, [isOpen, toggle, linkStyle]);
+  }, [isOpen, toggle]);
 
   const renderItem = useCallback((item: any) => {
     return (

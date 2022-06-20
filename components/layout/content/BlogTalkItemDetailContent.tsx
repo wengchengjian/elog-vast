@@ -42,9 +42,14 @@ export default function BlogTalkItemDetailContent({
   }, []);
 
   const { data, error, loading } = useRequest(
-    `/api/comment?selectedKey=${selectedKey}&linkId=${
-      talk.id
-    }&type=${2}&page=${page}&pageSize=${pageSize}`
+    '/api/comment',
+    {
+      selectedKey,
+      linkId:talk.id,
+      type:2,
+      page,
+      pageSize
+    }
   );
 
   const getTalkContent = useCallback(() => {

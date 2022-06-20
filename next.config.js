@@ -13,11 +13,12 @@ const semi = require('@douyinfe/semi-next').default({
 module.exports = withTM(semi({
   reactStrictMode: true,
   images:{
-    domains:["joeschmoe.io","bing.ioliu.cn","sf6-cdn-tos.douyinstatic.com"]
+    domains:["joeschmoe.io","bing.ioliu.cn","sf6-cdn-tos.douyinstatic.com","dummyimage.com"]
   },
   swcMinify: true,
   experimental: {
     concurrentFeatures: true,
     serverComponents: true,
+    forceSwcTransforms: true,
   },
 }));

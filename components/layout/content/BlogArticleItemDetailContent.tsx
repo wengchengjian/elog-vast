@@ -53,9 +53,13 @@ export default function BlogArticleItemDetailContent({
   }, []);
 
   const { data, error, loading } = useRequest(
-    `/api/comment?selectedKey=${selectedKey}&linkId=${
-      article.id
-    }&type=${1}&page=${page}&pageSize=${pageSize}`
+    '/api/comment',{
+      selectedKey,
+      linkId:article.id,
+      type:1,
+      page,
+      pageSize
+    }
   );
 
   const getArticleContent = useCallback(() => {

@@ -1,0 +1,9 @@
+.more_comment {
+    position: absolute;
+    left: 10;
+    right: 0;
+    bottom: -5;
+    color: #2d2e36;
+    font-weight: 300;
+    cursor: pointer;
+}

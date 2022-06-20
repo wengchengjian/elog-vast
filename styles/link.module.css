@@ -1,0 +1,10 @@
+.card_style {
+    cursor: pointer;
+    max-width: 23%;
+    max-height:300px;
+    transition: all 0.3s ease;
+}
+
+.card_style:hover{
+    transform: scale(1.1);
+}

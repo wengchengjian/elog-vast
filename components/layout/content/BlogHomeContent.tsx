@@ -25,9 +25,11 @@ export default function BlogHomeContent() {
     setPageSize(pageSize);
   };
   const { data, error, loading } = useRequest(
-    `/api/article?type=${
-      selectedKey ?? 'recentCreateArticle'
-    }&page=${page}&pageSize=${pageSize}`
+    '/api/article',{
+      selectedKey,
+      page,
+      pageSize
+    }
   );
 
   if (error) {
