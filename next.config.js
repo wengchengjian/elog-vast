@@ -21,4 +21,7 @@ module.exports = withTM(semi({
     serverComponents: true,
     forceSwcTransforms: true,
   },
+  generateBuildId:async function(){
+    return "next-blog-vast-010101"
+  }
 }));
