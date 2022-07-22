@@ -10,6 +10,8 @@ import {
   IconMoon,
   IconLanguage,
   IconResso,
+  IconUser,
+  IconCalendarClock,
   IconAlertTriangle,
 } from '@douyinfe/semi-icons';
 import { OnSelectedData } from '@douyinfe/semi-ui/navigation';
@@ -55,6 +57,12 @@ const items = [
     path: '/link',
   },
   {
+    itemKey: 'about',
+    text: '关于',
+    icon: <IconUser />,
+    path: '/about',
+  },
+  {
     itemKey: 'experimental',
     text: '实验室',
     icon: <IconBolt />,
@@ -69,6 +77,12 @@ const items = [
         itemKey: 'logs',
         text: '日志',
         icon: <IconAlertTriangle />,
+        path: '/logs',
+      },
+      {
+        itemKey: 'logs',
+        text: '餐厅打卡',
+        icon: <IconCalendarClock />,
         path: '/logs',
       },
     ],

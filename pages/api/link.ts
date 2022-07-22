@@ -14,10 +14,10 @@ export function generate() {
   return Mock.mock({
     "id": Random.id(),
     "content": Random.paragraph(16, 64),
-    name:Random.name(),
-    address:Random.url(),
-    logo:"https://bing.ioliu.cn/v1/rand?w=300&h=400",
-    description:Random.cparagraph(2,4),
+    name: Random.name(),
+    address: "https://www.baidu.com",
+    logo: "https://bing.ioliu.cn/v1/rand?w=300&h=400",
+    description: Random.cparagraph(2, 4),
     "createTime": Random.datetime(),
     "updateTime": Random.datetime(),
   })
