@@ -10,12 +10,12 @@ export default function handler(
 
   let model: string[] = [];
 
-  let files = fs.readdirSync('D:\\vscodeProject\\elog-vast\\public\\Resources');
+  let files = fs.readdirSync('D:\\vsProject\\elog-vast\\public\\Resources');
 
   if (files && files.length !== 0) {
     model = files.filter((file) =>
       fs
-        .statSync(`D:\\vscodeProject\\elog-vast\\public\\Resources\\${file}`)
+        .statSync(`D:\\vsProject\\elog-vast\\public\\Resources\\${file}`)
         .isDirectory()
     );
   }

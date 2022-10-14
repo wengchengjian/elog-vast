@@ -7,7 +7,7 @@ import BlogCategoryContent from '@@/layout/content/BlogCategoryContent';
 import BlogFooter from '@@/layout/footer/BlogFooter';
 import MainLayout from '@@/layout/MainLayout';
 import { Category } from '@/types/Category';
-import { categories } from '@/pages/api/category';
+import { sxios } from '@/request/server';
 
 export type CategoryPageProps = {
   categories: Category[];
@@ -17,8 +17,7 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps> = async (
   context
 ) => {
   //TODO 获取分类数据
-  // const categories = await axios.get('/api/category');
-  // ...
+  const categories = await sxios.post('/category/list');
   return {
     props: {
       categories,

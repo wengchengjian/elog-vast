@@ -5,7 +5,6 @@ import { AudioProps } from '../components/business/MusicAplayer';
 
 // axios.defaults.baseURL = "http://localhost:7895/api";
 
-axios.defaults.headers.common['Authorization'] = "adadadadadaddad";
 
 
 export const fetcher = async (url: string) => {
@@ -28,7 +27,10 @@ export const fetcher = async (url: string) => {
 export const music_axios = axios.create({
   baseURL: MUSIC_APP_URL,
   withCredentials: true,
-})
+});
+
+music_axios.defaults.headers.common['Authorization'] = "adadadadadaddad";
+
 
 export const set_axios_cookie = (cookie: string) => {
   music_axios.interceptors.request.use(function (config) {

@@ -75,12 +75,6 @@ const items = [
       },
       {
         itemKey: 'logs',
-        text: '日志',
-        icon: <IconAlertTriangle />,
-        path: '/logs',
-      },
-      {
-        itemKey: 'logs',
         text: '餐厅打卡',
         icon: <IconCalendarClock />,
         path: '/logs',
@@ -110,6 +104,10 @@ export default function BlogHeader() {
   );
 
   const onSelectKey = (selectData: OnSelectedData) => {
+    if(selectData.selectedItems[0].path === '/resources'){
+      window.location.href = "http://118.31.10.37:8080/";
+      return;
+    }
     router.push(selectData.selectedItems[0].path);
   };
 

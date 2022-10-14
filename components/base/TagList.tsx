@@ -14,11 +14,12 @@ export default function TagList({ tags, onClick }: TagListProps) {
     onClick(tag);
     setSelectedKey(tag.id);
   };
+  console.log("asd",tags);
 
   return (
     <>
       <Space>
-        {tags.map((tag) => {
+        {tags?.map((tag) => {
           return (
             <Tag
               color="blue"

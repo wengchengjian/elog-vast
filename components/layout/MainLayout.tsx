@@ -59,7 +59,7 @@ export default function MainLayout({
 
         <Footer>{footer}</Footer>
         <MusicAplayer />
-        <Live2DComponent />
+        {/* <Live2DComponent /> */}
       </Layout>
       <Script type="text/javascript" src="/js/canvas-nest.min.js"></Script>
       <Script src="/js/live2dcubismcore.min.js"></Script>

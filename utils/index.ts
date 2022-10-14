@@ -1,7 +1,7 @@
 import { articles } from './../pages/api/article';
 import { Article } from "@/types/article";
 import { Moment } from "moment";
-import { DEFAULT_TOKEN_NAME } from "../constants";
+import {DEFAULT_TOKEN_NAME, DEFAULT_USER_AVATAR, SERVER_ADDRESS} from "../constants";
 import moment from 'moment';
 
 export function Num2ToStr(num: number) {
@@ -10,6 +10,13 @@ export function Num2ToStr(num: number) {
   } else {
     return ((num / 10000).toFixed(2)) + 'w';
   }
+}
+
+export function getServerImage(uri:string){
+    if(!uri){
+        uri = DEFAULT_USER_AVATAR;
+    }
+    return uri.startsWith("http") ? uri : SERVER_ADDRESS + uri;
 }
 
 export function setToken(token: string) {

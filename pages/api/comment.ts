@@ -12,7 +12,6 @@ import { user } from './user';
 import { generate as generateUser } from './user';
 const Random = Mock.Random;
 
-
 export function generate(type: number, linkId: string, replyTo?: SysUser) {
   return Mock.mock({
     id: Random.id(),

@@ -33,17 +33,17 @@ export default function ArticleView({ article }: ArticleProps) {
           <Space style={{ fontSize: 12, fontWeight: 300 }}>
             <span>{moment(article.updateTime).format('yyyy-MM-DD')}</span>
             <span>/</span>
-            <span style={{ display: 'flex', alignItems: 'center' }}>
+            <span style={{ display: 'flex', alignItems: 'center',marginRight: 4 }}>
               <IconEyeOpened style={{ marginRight: 4 }} />
               {Num2ToStr(article.readNum ?? 0)}
             </span>
             <span>/</span>
-            <span style={{ display: 'flex', alignItems: 'center' }}>
+            <span style={{ display: 'flex', alignItems: 'center',marginRight: 4 }}>
               <IconComment style={{ marginRight: 4 }} />
               {Num2ToStr(article.commentNum ?? 0)}
             </span>
             <span>/</span>
-            <span style={{ display: 'flex', alignItems: 'center' }}>
+            <span style={{ display: 'flex', alignItems: 'center',marginRight: 8 }}>
               <IconLikeThumb style={{ marginRight: 4 }} />
               {Num2ToStr(article.likeNum ?? 0)}
             </span>

@@ -5,7 +5,6 @@ import UserInfo from '@@/business/UserInfo';
 import BlogFooter from '@@/layout/footer/BlogFooter';
 import MainLayout from '@@/layout/MainLayout';
 import { SysUser } from '@/types/user';
-import { user } from './api/user';
 import { GetStaticProps } from 'next';
 import { Space, Typography } from '@douyinfe/semi-ui';
 import ClockCalendar from '@@/business/ClockCalendar';
@@ -24,30 +23,45 @@ import SmallComponent from '@@/base/SmallComponent';
 import Live2DComponent from '@@/business/Live2DComponent';
 import RecentComment from '@@/business/RecentComment';
 import { BlogComment as CommentType } from '@/types/comment';
+import { sxios } from "@/request/server"
 
-const Home: NextPage = ({ user, audio, model }: any) => {
+const Home: NextPage = ({ user, audio, model,statics }: any) => {
   return (
     <>
-      <BlogHomeLayout user={user} />
+      <BlogHomeLayout user={user} statics={statics} />
     </>
   );
 };
+
+export type Statics = {
+  statistics:{
+    viewNum:number,
+    likeNum:number,
+    articleNum:number
+  }
+}
+
 export type HomeProps = {
   user: SysUser;
+  statics:Statics
 };
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async (
   context
 ) => {
+  const user = await sxios.get("/user/admin");
+  const statics = await sxios.get("/system/indexData");
+
   return {
     props: {
       user,
+      statics
     },
   };
 };
 
 export function BlogHomeLayout({
-  user,
+  user,statics
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
@@ -55,7 +69,7 @@ export function BlogHomeLayout({
         header={<BlogHeader />}
         content={<BlogHomeContent />}
         leftSider={
-          <LeftSider user={user} comments={user.recentComments ?? []} />
+          <LeftSider user={user} statics={statics} comments={user?.recentComments ?? []} />
         }
         rightSider={<RightSider user={user} />}
         footer={<BlogFooter />}
@@ -99,10 +113,10 @@ export function RightSider({ user }: RightSiderProps) {
           title={<>人生倒计时</>}
           content={<LifeCountDown />}
         />
-        <SmallComponent
+        {/* <SmallComponent
           title={<>标签云</>}
           content={<ClickTagCloud tags={tags} />}
-        />
+        /> */}
       </Space>
     </>
   );
@@ -111,15 +125,16 @@ export function RightSider({ user }: RightSiderProps) {
 export type LeftSiderProps = {
   user: SysUser;
   comments: CommentType[];
+  statics:Statics
 };
 
-export function LeftSider({ user, comments }: LeftSiderProps) {
+export function LeftSider({ user, comments,statics }: LeftSiderProps) {
   return (
     <>
       <Space spacing={'medium'} vertical={true} align={'start'}>
         <SmallComponent
           title={<>个人介绍</>}
-          content={<UserInfo user={user} />}
+          content={<UserInfo user={user} statics={statics} />}
         />
 
         <SmallComponent

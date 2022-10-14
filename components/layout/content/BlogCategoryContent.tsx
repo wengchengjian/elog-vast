@@ -18,6 +18,7 @@ import { Category } from '@/types/Category';
 import TagList from '@@/base/TagList';
 import { useRouter } from 'next/router';
 import useRequest from '@/hooks/useRequest';
+import { sxios } from '@/request/server';
 
 export type CategoryContentProps = {
   categories: Category[];
@@ -32,36 +33,40 @@ export default function BlogCategoryContent({
 }: CategoryContentProps) {
   const router = useRouter();
 
-  const [selectedKey, setSelectedKey] = useState('recentCreateArticle');
+  const [selectedKey, setSelectedKey] = useState('create_time');
 
   const { page, pageSize, setPage, setPageSize } = usePage();
 
-  const [selectCategory, setCategory] = useState('all');
+  const [selectCategory, setCategory] = useState();
 
   const [searchContent, setSearchContent] = useState('');
 
   const handleTabChange = (key: string) => {
     setSelectedKey(key);
   };
-
+  const [loading,setLoading] = useState(false);
   const onPageChange = (page: number, pageSize: number) => {
     setPage(page);
     setPageSize(pageSize);
   };
 
-  const { data, error, loading } = useRequest(
-    '/api/article',{
-      selectedKey,
-      category:selectCategory,
-      searchContent:encodeURIComponent(searchContent),
-      page,
-      pageSize
-    }
-  );
+  const [data,setData] = useState<any>();
 
-  if (error) {
-    return <>出现错误</>;
-  }
+  useEffect(()=>{
+    setLoading(true)
+    sxios.post("/article/queryArticleByPage",{
+      current:page,
+      pageSize,
+      orderBy:selectedKey,
+      categoryName: selectCategory,
+      orderDesc:true,
+      publish:1
+    }).then((res)=>{
+      setData(res);
+    }).finally(()=>{
+      setLoading(false)
+    })
+  },[page,pageSize,selectedKey,selectCategory]);
 
   const handleCLickSearchHelpIcon = () => {
     router.push('/help/search');
@@ -89,7 +94,7 @@ export default function BlogCategoryContent({
         <TagList tags={categories} onClick={(tag) => setCategory(tag.name)} />
         <ArticleListContent
           total={data?.total ?? 0}
-          data={data?.list ?? []}
+          data={data?.records ?? []}
           page={page}
           loading={loading}
           pageSize={pageSize}
