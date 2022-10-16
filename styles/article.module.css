@@ -17,9 +17,9 @@
 }
 
 .article_list_item:hover {
-  border: 2px solid #74759b;
+  border: 1px solid #74759b;
   padding-top: 20px;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
 }
 
 .icon-button {

@@ -53,7 +53,7 @@ export default function ArticleView({ article }: ArticleProps) {
               style={{ display: 'flex', alignItems: 'center', fontSize: 14 }}
             >
               <IconLayers />
-              &nbsp;&nbsp;{article.category.name}
+              &nbsp;&nbsp;{article?.category?.name ?? "未知" }
             </span>
           </div>
         </div>

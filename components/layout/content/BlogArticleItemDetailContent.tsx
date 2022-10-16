@@ -43,7 +43,7 @@ export default function BlogArticleItemDetailContent({
     /**
      * 1->最新,2->最热,默认最新
      */
-    const [selectedKey, setSelectedKey] = useState('1');
+    const [selectedKey, setSelectedKey] = useState('like_num');
 
     const {page, pageSize, setPage, setPageSize} = usePage();
 
@@ -72,7 +72,7 @@ export default function BlogArticleItemDetailContent({
         }).finally(() => {
             setLoading(false);
         })
-    }, []);
+    }, [page,pageSize,selectedKey]);
 
     const getArticleContent = useCallback(() => {
         return (
@@ -177,11 +177,12 @@ export default function BlogArticleItemDetailContent({
                     pageSize={pageSize}
                     onPageChange={onPageChange}
                     data={comments?.records ?? []}
+                    author={cur_author}
                     loading={loading}
                 />
             </Space>
         );
-    }, [comments, page, pageSize, onPageChange, loading, selectedKey]);
+        }, [comments, page, pageSize, onPageChange, loading, selectedKey,cur_author]);
 
     return (
         <>

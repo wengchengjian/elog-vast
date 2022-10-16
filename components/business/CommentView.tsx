@@ -14,14 +14,16 @@ import {
 } from '@douyinfe/semi-icons';
 import {useCallback, useMemo, useState} from 'react';
 import styles from "@/styles/comment.module.css";
+import { SysUser } from '@/types/user';
 
 export type CommentViewProps = {
     comment: BlogComment;
+    author: SysUser;
 };
 
 const {Paragraph, Title} = Typography;
 
-export default function CommentView({comment}: CommentViewProps) {
+export default function CommentView({comment, author}: CommentViewProps) {
     const [isOpen, setOpen] = useState(false);
 
     const [isComment, setIsComment] = useState(false);
@@ -62,10 +64,10 @@ export default function CommentView({comment}: CommentViewProps) {
                         />
                     </div>
                 }
-                main={<CommentView comment={item}/>}
+                main={<CommentView comment={item} author={author}/>}
             />
         );
-    }, []);
+        }, [author]);
 
     const collapsed = useMemo(() => {
         return (
@@ -95,9 +97,9 @@ export default function CommentView({comment}: CommentViewProps) {
                         alignItems: 'center',
                     }}
                 >
-                    <span>{comment.creator.nickname}</span>&nbsp;·
+                    <span>{comment.createNickname}</span>·
                     <span>
-              {comment.createUser === 'admin' ? '(作者) ·' : null}
+                        {comment?.username === author?.username ? '(作者) ·' : null}
           </span>
                     <span className="ip_style">IP: {comment.territory}</span>
                     {/* 如果是子评论，显示回复的人 */}

@@ -3,7 +3,11 @@ import { SysUser } from "./user";
 export type BlogComment = {
   id: string;
   content: string;
-  replyTo: SysUser; // 给谁回复，给admin回复则是顶级评论
+  username:string;
+  createNickname:string;
+  createUserAvatar:string;
+  replyToNickname:string;
+  dislikeNum:number;
   type: number; // 1->文章评论 2->杂谈评论
   linkId: string;// 所关联的文章或者杂谈的id
   territory: string;// 回复的ip地域
