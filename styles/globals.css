@@ -29,7 +29,9 @@ body {
   font-size: 14px;
   width: 300px;
 }
-
+.login_page_input_style {
+  margin-top: 10px;
+}
 .white-back-box {
   width: 100%;
   border-radius: 5px;

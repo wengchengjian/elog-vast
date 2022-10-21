@@ -1,9 +1,9 @@
-import { List, Tabs } from '@douyinfe/semi-ui';
-import { useState } from 'react';
-import useSWR from 'swr';
-import Image from 'next/image';
-import styles from '@/styles/article.module.css';
-import BlogPagination from '@@/business/BlogPagination';
+import { List, Tabs } from "@douyinfe/semi-ui";
+import { useState } from "react";
+import useSWR from "swr";
+import Image from "next/image";
+import styles from "@/styles/article.module.css";
+import BlogPagination from "@@/business/BlogPagination";
 
 export type QueryResponse = {
   data: any[];
@@ -13,6 +13,7 @@ export type QueryResponse = {
 export type ListContentProps = {
   data: any[];
   page: number;
+  loading: boolean;
   pageSize: number;
   total: number;
   onPageChange: (page: number, pageSize: number) => void;
@@ -26,10 +27,11 @@ export default function ListContent({
   onPageChange,
   renderItem,
   total,
+  loading,
 }: ListContentProps) {
   return (
     <>
-      <List dataSource={data ?? []} renderItem={renderItem} />
+      <List loading={loading} dataSource={data ?? []} renderItem={renderItem} />
       <BlogPagination
         total={total}
         page={page}

@@ -1,20 +1,31 @@
-import { Layout, Typography } from '@douyinfe/semi-ui';
+import { Layout, Typography } from "@douyinfe/semi-ui";
 const { Header, Sider, Content, Footer } = Layout;
-import styles from '@/styles/MainLayout.module.css';
-import { Col, Row } from '@douyinfe/semi-ui';
-import Head from 'next/head';
-import Script from 'next/script';
-import MusicAplayer, { AudioProps } from '@/components/business/MusicAplayer';
-import Live2DComponent from '@@/business/Live2DComponent';
+import styles from "@/styles/MainLayout.module.css";
+import { Col, Row } from "@douyinfe/semi-ui";
+import Head from "next/head";
+import Script from "next/script";
+import MusicAplayer, { AudioProps } from "@/components/business/MusicAplayer";
+import Live2DComponent from "@@/business/Live2DComponent";
+import BlogLoginPage from "../business/BlogLoginPage";
+import BlogRegisterPage from "../business/BlogRegisterPage";
+import { useEffect } from "react";
+import { useSetRecoilState } from "recoil";
+import {
+  curUserState,
+  userArticleLinksState,
+  userCommentLinksState,
+} from "@/store";
+import { initUser } from "@/utils";
+import { SysUser } from "@/types/user";
 type LayoutProps = {
   header: JSX.Element;
   leftSider?: JSX.Element;
   rightSider?: JSX.Element;
   content: JSX.Element;
   footer: JSX.Element;
-  spans?:{
-    [key:string]:number
-  }
+  spans?: {
+    [key: string]: number;
+  };
 };
 const { Paragraph, Title, Text } = Typography;
 
@@ -25,10 +36,24 @@ export default function MainLayout({
   rightSider,
   content,
   footer,
-  spans={}
+  spans = {},
 }: LayoutProps) {
-  const audio: AudioProps[] = [];
-  const model: string[] = [];
+  const setCurUser = useSetRecoilState(curUserState);
+  const setUserArticleLinks = useSetRecoilState(userArticleLinksState);
+  const setUserCommentLinks = useSetRecoilState(userCommentLinksState);
+
+  useEffect(() => {
+    initUser().then((res) => {
+      const { curUser, userArticleLinks, userCommentLinks } = res ?? {};
+      setCurUser(curUser ?? ({} as SysUser));
+      setUserArticleLinks(
+        new Map(Object.entries(userArticleLinks ?? new Object()))
+      );
+      setUserCommentLinks(
+        new Map(Object.entries(userCommentLinks ?? new Object()))
+      );
+    });
+  }, [setCurUser, setUserArticleLinks, setUserCommentLinks]);
 
   return (
     <>
@@ -37,13 +62,13 @@ export default function MainLayout({
         <Layout hasSider={false} className="back_img_style">
           <Row
             gutter={{ xs: 8, sm: 16, md: 24 }}
-            type={'flex'}
-            justify={'center'}
-            style={{ margin: '8px' }}
+            type={"flex"}
+            justify={"center"}
+            style={{ margin: "8px" }}
           >
             <Col span={spans.leftSider ?? 4}>
               {leftSider ? (
-                <Sider style={{ height: '100%' }}>{leftSider}</Sider>
+                <Sider style={{ height: "100%" }}>{leftSider}</Sider>
               ) : null}
             </Col>
             <Col span={spans.content ?? 12}>
@@ -51,7 +76,7 @@ export default function MainLayout({
             </Col>
             <Col span={spans.rightSider ?? 4}>
               {rightSider ? (
-                <Sider style={{ height: '100%' }}>{rightSider}</Sider>
+                <Sider style={{ height: "100%" }}>{rightSider}</Sider>
               ) : null}
             </Col>
           </Row>
@@ -59,6 +84,8 @@ export default function MainLayout({
 
         <Footer>{footer}</Footer>
         <MusicAplayer />
+        <BlogLoginPage />
+        <BlogRegisterPage />
         {/* <Live2DComponent /> */}
       </Layout>
       <Script type="text/javascript" src="/js/canvas-nest.min.js"></Script>

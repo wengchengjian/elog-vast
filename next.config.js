@@ -15,8 +15,6 @@ module.exports = withTM(semi({
     },
     swcMinify: true,
     experimental: {
-        concurrentFeatures: true,
-        serverComponents: true,
         forceSwcTransforms: true,
     },
     generateBuildId: async function () {

@@ -1,37 +1,44 @@
-import { Skeleton, Space, TextArea } from '@douyinfe/semi-ui';
-import { useCallback } from 'react';
-
+import { Skeleton, Space, TextArea } from "@douyinfe/semi-ui";
+import _ from "lodash";
+import { useCallback, useState } from "react";
 export type BaseCommentProps = {
-  value: string;
-  onChange: (value: string) => void;
-  onFinish: () => void;
+  onFinish: (val: string) => Promise<void>;
+  visible: boolean;
 };
 
-export default function BaseComment({
-  value,
-  onChange,
-  onFinish,
-}: BaseCommentProps) {
-  const handleClickKeyUp = (e: any) => {
-    console.log(e.keyCode);
-  };
+export default function BaseComment({ onFinish, visible }: BaseCommentProps) {
+  const [value, setValue] = useState("");
 
   const getBaseCommentComponent = useCallback(() => {
     return (
       <>
-        <Space style={{ width: '100%' }} align="start" spacing={'medium'}>
+        <Space
+          style={{ width: "100%", display: visible ? "" : "none" }}
+          align="start"
+          spacing={"loose"}
+        >
           <Skeleton.Avatar></Skeleton.Avatar>
           <TextArea
-            style={{ backgroundColor: '#f2f3f5' }}
-            placeholder="输入评论,Crtl+Enter发送"
+            style={{
+              backgroundColor: "#f2f3f5",
+
+              minWidth: 500,
+            }}
+            placeholder="输入评论,Ctrl+Enter发送"
             value={value}
-            onChange={onChange}
+            onKeyDown={_.throttle((e) => {
+              if (e.ctrlKey && e.keyCode == 13) {
+                onFinish(value);
+                setValue("");
+              }
+            }, 2000)}
+            onChange={setValue}
             maxCount={100}
           ></TextArea>
         </Space>
       </>
     );
-  }, [value, onChange]);
+  }, [value, setValue, onFinish, visible]);
 
   return getBaseCommentComponent();
 }

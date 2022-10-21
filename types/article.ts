@@ -1,4 +1,4 @@
-import { SysUser } from '@/types/user';
+import { SysUser } from "@/types/user";
 import { Category } from "./Category";
 import { Tag } from "./Tag";
 
@@ -14,6 +14,14 @@ export type Article = {
   readNum?: number;
   likeNum?: number;
   commentNum?: number;
+  dislikeNum?: number;
   createTime: Date;
   updateTime: Date;
-}
+};
+
+export type UserArticleLink = {
+  id: string;
+  userId: string;
+  articleId: string;
+  type: number;
+};
