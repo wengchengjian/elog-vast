@@ -44,9 +44,9 @@ export default function UserInfo({ user,statics }: UserInfoProps) {
           {user?.description ?? "描述"}
         </Paragraph>
         <Space spacing={'loose'}>
-          <RecordTag name={'文章数'} num={statics.statistics.articleNum ?? 0} />
-          <RecordTag name={'阅读量'} num={statics.statistics.viewNum ?? 0} />
-          <RecordTag name={'点赞量'} num={statics.statistics.likeNum ?? 0} />
+          <RecordTag name={'文章数'} num={statics?.statistics?.articleNum ?? 0} />
+          <RecordTag name={'阅读量'} num={statics?.statistics?.viewNum ?? 0} />
+          <RecordTag name={'点赞量'} num={statics?.statistics?.likeNum ?? 0} />
         </Space>
       </Space>
     </>

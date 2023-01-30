@@ -3,6 +3,8 @@ import { useSetRecoilState } from "recoil";
 import { sxios } from "@/request/server";
 import { Article, UserArticleLink } from "@/types/article";
 import { Moment } from "moment";
+import TurndownService from "turndown";
+
 import {
   DEFAULT_TOKEN_NAME,
   DEFAULT_USER_AVATAR,
@@ -11,7 +13,8 @@ import {
 } from "../constants";
 import moment from "moment";
 import { curUserState } from "@/store";
-import { UserCommentLink } from "@/types/comment";
+import {BlogComment, UserCommentLink} from "@/types/comment";
+import {Random} from "mockjs";
 
 export function isLike(map: Map<string, number[]>, linkId: string) {
   if (map.get(linkId)) {
@@ -31,6 +34,23 @@ export function isView(map: Map<string, number[]>, linkId: string) {
     return map.get(linkId).includes(2);
   }
   return false;
+}
+
+export const turndownService = new TurndownService();
+
+export function defaultAuthor(name: string) {
+  return {
+    id: Random.id(),
+    nickname: name,
+    username: name,
+    avatar: "https://joeschmoe.io/api/v1/random",
+    description: Random.paragraph(),
+    post: "职位填充",
+    email: Random.email(),
+    articleNum: 0,
+    readNum: 0,
+    likeNum: 0,
+  } as SysUser;
 }
 
 export async function initUser() {

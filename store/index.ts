@@ -3,6 +3,8 @@ import { UserCommentLink } from "@/types/comment";
 import { SysUser } from "@/types/user";
 import { atom, AtomOptions } from "recoil";
 import { v1 } from "uuid";
+import {Tag} from "@/types/Tag";
+import {Category} from "@/types/Category";
 
 function Fname<T>(options: AtomOptions<T>) {
   options.key = `${options.key}/${v1()}`;
@@ -13,6 +15,16 @@ export const curUserState = Fname({
   key: "curUserState",
   default: {} as SysUser,
 });
+
+export const tagStore = Fname({
+  key: "tagStore",
+  default: new Map<string,Tag>()
+})
+
+export const cateStore = Fname({
+  key: "cateStore",
+  default: new Map<string,Category>()
+})
 
 export const userArticleLinksState = Fname({
   key: "userArticleLinks",

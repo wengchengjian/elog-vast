@@ -8,9 +8,10 @@ export type Article = {
   description?: string;
   img?: string;
   content: string;
+  contentFormat: string;
   category: Category;
-  author: SysUser;
-  tags?: Tag[];
+  author: string;
+  tags?: string;
   readNum?: number;
   likeNum?: number;
   commentNum?: number;

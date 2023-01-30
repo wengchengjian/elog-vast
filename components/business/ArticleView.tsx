@@ -9,22 +9,29 @@ import {
 import styles from '@/styles/article.module.css';
 import { Article } from '@/types/article';
 import { Num2ToStr } from '@/utils';
+import {useRecoilValue} from "recoil";
+import {cateStore, tagStore} from "@/store";
 const { Title, Text, Paragraph } = Typography;
 
 export type ArticleProps = {
   article: Article;
 };
 export default function ArticleView({ article }: ArticleProps) {
+
+  const tags = useRecoilValue(tagStore);
+  const categories = useRecoilValue(cateStore);
+
   return (
     <>
       <Space vertical={true} align={'start'}>
         <Title heading={4}>{article.title}</Title>
         <Paragraph ellipsis={{ rows: 3 }}>{article.description}</Paragraph>
         <Space>
-          {(article.tags ?? []).map((tag) => {
+          {(Array.from(new Set<string>(article.tags?.split(","))) ?? []).map((name, index) => {
+            let tag = tags.get(name);
             return (
-              <Tag key={tag.id} style={{ color: tag.color ?? 'blue' }}>
-                {tag.name}
+              <Tag key={tag?.id ?? index} style={{ color: tag?.color ?? 'blue' }}>
+                {tag?.name ?? name}
               </Tag>
             );
           })}

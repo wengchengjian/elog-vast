@@ -14,7 +14,6 @@ export default function BlogRegisterPage() {
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
-  console.log("注册搜索是");
   const showDialog = () => {
     setVisible(true);
   };

@@ -11,13 +11,14 @@ export const MUSIC_CACHE_STR = "music-cache";
 
 export const ACCOUNT_CACHE_STR = "account-cache";
 
-export const SERVER_ADDRESS = "http://localhost:8080";
+export const SERVER_ADDRESS = "http://127.0.0.1:8978";
 
 export const DEFAULT_USER_AVATAR = "https://joeschmoe.io/api/v1/random";
 
 export const DEFAULT_ARTICLE_IMAAGE = "https://joeschmoe.io/api/v1/random";
 
 export const GOSSIP_BLOG_TOKEN_KEY = "GOSSIP_BLOG_TOKEN_KEY";
+
 
 export const WINDOW_SIZE_MODE = {
   lg: 1200,

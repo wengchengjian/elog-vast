@@ -49,8 +49,8 @@ export type HomeProps = {
 export const getServerSideProps: GetServerSideProps<HomeProps> = async (
   context
 ) => {
-  const user = await sxios.get("/user/admin");
-  const statics = await sxios.get("/system/indexData");
+  const user = (await sxios.get("/user/admin")) ?? null;
+  const statics = (await sxios.get("/system/indexData")) ?? null;
 
   return {
     props: {
@@ -68,9 +68,6 @@ export function BlogHomeLayout({
       <MainLayout
         header={<BlogHeader />}
         content={<BlogHomeContent />}
-        leftSider={
-          <LeftSider user={user} statics={statics} comments={user?.recentComments ?? []} />
-        }
         rightSider={<RightSider user={user} />}
         footer={<BlogFooter />}
       ></MainLayout>

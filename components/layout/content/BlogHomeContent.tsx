@@ -8,6 +8,10 @@ import usePage from '@/hooks/usePage';
 import ArticleListContent from '@@/business/ArticleListContent';
 import useRequest from '@/hooks/useRequest';
 import { sxios } from '@/request/server';
+import { Tag } from '@/types/Tag';
+import {useSetRecoilState} from "recoil";
+import {cateStore, tagStore} from "@/store";
+import {Category} from "@/types/Category";
 /**
  * Tab栏切换时，客户端渲染数据
  * @constructor
@@ -25,13 +29,28 @@ export default function BlogHomeContent() {
 
   const [data,setData] = useState<any>();
 
+
   const onPageChange = (page: number, pageSize: number) => {
     setPage(page);
     setPageSize(pageSize);
   };
 
+  const setTagStore = useSetRecoilState(tagStore);
+  useEffect(()=>{
+    // 查询所有标签
+    sxios.get("/tag/list").then(tagRes=>{
+      let tags = tagRes as unknown as Tag[];
+      let map = new Map<string, Tag>();
+      for(let tag of tags) {
+        map.set(tag.name, tag);
+      }
+      setTagStore(map);
+    });
+  },[setTagStore])
+
   useEffect(()=>{
     setLoading(true)
+    // 分页查询文章
     sxios.post("/article/queryArticleByPage",{
       current:page,
       pageSize,

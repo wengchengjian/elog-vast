@@ -59,7 +59,7 @@ export default function MainLayout({
     <>
       <Layout>
         <Header>{header}</Header>
-        <Layout hasSider={false} className="back_img_style">
+        <Layout className="back_img_style">
           <Row
             gutter={{ xs: 8, sm: 16, md: 24 }}
             type={"flex"}
@@ -71,7 +71,7 @@ export default function MainLayout({
                 <Sider style={{ height: "100%" }}>{leftSider}</Sider>
               ) : null}
             </Col>
-            <Col span={spans.content ?? 12}>
+            <Col span={spans.content ?? 16}>
               <Content>{content}</Content>
             </Col>
             <Col span={spans.rightSider ?? 4}>

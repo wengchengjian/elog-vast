@@ -1,10 +1,10 @@
 .article_item {
     height: 200px;
 }
-.article_img {
-    width: 200px;
-    height: 100px;
-}
+/*.article_img {*/
+/*    width: 400px;*/
+/*    height: 220px;*/
+/*}*/
 .article_view_footer {
     width: 100%;
     display: flex;
@@ -24,8 +24,8 @@
 
 .icon-button {
   position: relative;
-  width: 4rem;
-  height: 4rem;
+  width: 4rem !important;
+  height: 4rem !important;
   background-color: #fff;
   background-position: 50%;
   background-repeat: no-repeat;

@@ -72,11 +72,11 @@ export default function ArticleListContent({
         key={item.id}
         className={`white-back-box ${styles.article_list_item}`}
         header={
-          <div className={styles.article_img}>
+          <div>
             <Image
               src={getServerImage(item.cover)}
-              width={400}
-              height={220}
+              width={250}
+              height={120}
               alt="picture of the article"
             />
           </div>

@@ -19,6 +19,9 @@ import TagList from "@@/base/TagList";
 import { useRouter } from "next/router";
 import useRequest from "@/hooks/useRequest";
 import { sxios } from "@/request/server";
+import {Tag} from "@/types/Tag";
+import {cateStore, tagStore} from "@/store";
+import {useSetRecoilState} from "recoil";
 
 export type CategoryContentProps = {
   categories: Category[];
@@ -51,6 +54,19 @@ export default function BlogCategoryContent({
   };
 
   const [data, setData] = useState<any>();
+
+  const setTagStore = useSetRecoilState(tagStore);
+  useEffect(()=>{
+    // 查询所有标签
+    sxios.get("/tag/list").then(tagRes=>{
+      let tags = tagRes as unknown as Tag[];
+      let map = new Map<string, Tag>();
+      for(let tag of tags) {
+        map.set(tag.name, tag);
+      }
+      setTagStore(map);
+    });
+  },[setTagStore])
 
   useEffect(() => {
     setLoading(true);

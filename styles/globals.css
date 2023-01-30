@@ -1,5 +1,4 @@
 @import '~@douyinfe/semi-ui/dist/css/semi.min.css';
-@import '~antd/dist/antd.css';
 @import '~katex/dist/katex.min.css';
 @import '~markdown-navbar/dist/navbar.css';
 
@@ -23,6 +22,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover; */
+  justify-content: center;
 }
 
 .box_info{
@@ -35,7 +35,8 @@ body {
 .white-back-box {
   width: 100%;
   border-radius: 5px;
-  margin: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
