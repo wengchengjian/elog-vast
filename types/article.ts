@@ -26,3 +26,10 @@ export type UserArticleLink = {
   articleId: string;
   type: number;
 };
+
+
+export type ArticleRecords = {
+  archiveDate: string;
+
+  total: number;
+}

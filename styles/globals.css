@@ -1,6 +1,7 @@
 @import '~@douyinfe/semi-ui/dist/css/semi.min.css';
 @import '~katex/dist/katex.min.css';
 @import '~markdown-navbar/dist/navbar.css';
+@import 'react-virtualized/styles.css';
 
 html {
   font-size: 12px;
@@ -41,6 +42,10 @@ body {
   background-color: #fff;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
   border: 2px solid #fff;
+}
+
+.semi-list-item-body-main {
+  width: 100%;
 }
 
 .circular-green {
