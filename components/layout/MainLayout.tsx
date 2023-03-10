@@ -63,15 +63,9 @@ export default function MainLayout({
           <Row
             gutter={{ xs: 8, sm: 16, md: 24 }}
             type={"flex"}
-            justify={"center"}
             style={{ margin: "8px" }}
           >
-            <Col span={spans.leftSider ?? 4}>
-              {leftSider ? (
-                <Sider style={{ height: "100%" }}>{leftSider}</Sider>
-              ) : null}
-            </Col>
-            <Col span={spans.content ?? 16}>
+            <Col span={spans.content ?? 20}>
               <Content>{content}</Content>
             </Col>
             <Col span={spans.rightSider ?? 4}>
@@ -83,13 +77,11 @@ export default function MainLayout({
         </Layout>
 
         <Footer>{footer}</Footer>
-        <MusicAplayer />
         <BlogLoginPage />
         <BlogRegisterPage />
         {/* <Live2DComponent /> */}
       </Layout>
       <Script type="text/javascript" src="/js/canvas-nest.min.js"></Script>
-      <Script src="/js/live2dcubismcore.min.js"></Script>
     </>
   );
 }

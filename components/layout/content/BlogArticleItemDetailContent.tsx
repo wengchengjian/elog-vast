@@ -77,7 +77,7 @@ export default function BlogArticleItemDetailContent({
     useEffect(() => {
         setLoading(true);
         sxios
-            .post("/comment/queryCommentByPage", {
+            .post("/v1/api/comment/queryCommentByPage", {
                 current: page,
                 pageSize,
                 orderBy: selectedKey,

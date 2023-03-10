@@ -13,8 +13,8 @@ import {
 } from "../constants";
 import moment from "moment";
 import { curUserState } from "@/store";
-import {BlogComment, UserCommentLink} from "@/types/comment";
-import {Random} from "mockjs";
+import { BlogComment, UserCommentLink } from "@/types/comment";
+import { Random } from "mockjs";
 
 export function isLike(map: Map<string, number[]>, linkId: string) {
   if (map.get(linkId)) {
@@ -57,7 +57,7 @@ export async function initUser() {
   if (typeof window !== "undefined") {
     let token = localStorage.getItem(GOSSIP_BLOG_TOKEN_KEY);
     if (token) {
-      const curUser: SysUser = await sxios.get("/user/current");
+      const curUser: SysUser = await sxios.get("/v2/api/user/current");
       const userArticleLinks: Map<string, number> = await sxios.get(
         "/article/link"
       );

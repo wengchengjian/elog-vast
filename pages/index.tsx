@@ -1,92 +1,74 @@
-import type { GetServerSideProps, NextPage } from 'next';
-import BlogHeader from '@@/layout/header/BlogHeader';
-import BlogHomeContent from '@@/layout/content/BlogHomeContent';
-import UserInfo from '@@/business/UserInfo';
-import BlogFooter from '@@/layout/footer/BlogFooter';
-import MainLayout from '@@/layout/MainLayout';
-import { SysUser } from '@/types/user';
-import { GetStaticProps } from 'next';
-import { Space, Typography } from '@douyinfe/semi-ui';
-import ClockCalendar from '@@/business/ClockCalendar';
-import TimeProgress from '@@/base/TimeProgress';
-import { InferGetServerSidePropsType } from 'next';
-import LifeCountDown from '@@/business/LifeCountDown';
-import MusicAplayer, {
-  AplayerAudioProps,
-  AudioProps,
-} from '@@/business/MusicAplayer';
-import { MUSIC_CACHE, MUSIC_CACHE_STR } from '@/constants';
-import { getMusic } from '@/request';
-import ClickTagCloud from '@@/business/ClickTagCloud';
-import { tags } from '@/pages/api/tag';
-import SmallComponent from '@@/base/SmallComponent';
-import Live2DComponent from '@@/business/Live2DComponent';
-import RecentComment from '@@/business/RecentComment';
-import { BlogComment as CommentType } from '@/types/comment';
-import { sxios } from "@/request/server"
+import type { GetServerSideProps, NextPage } from "next";
+import BlogHeader from "@@/layout/header/BlogHeader";
+import BlogHomeContent from "@@/layout/content/BlogHomeContent";
+import UserInfo from "@@/business/UserInfo";
+import BlogFooter from "@@/layout/footer/BlogFooter";
+import MainLayout from "@@/layout/MainLayout";
+import { SysUser } from "@/types/user";
+import { Space } from "@douyinfe/semi-ui";
+import { InferGetServerSidePropsType } from "next";
+import SmallComponent from "@@/base/SmallComponent";
+import RecentComment from "@@/business/RecentComment";
+import { BlogComment as CommentType } from "@/types/comment";
+import { sxios } from "@/request/server";
 
-const Home: NextPage = ({ user, audio, model,statics }: any) => {
+const Home: NextPage = ({ statics }: any) => {
   return (
     <>
-      <BlogHomeLayout user={user} statics={statics} />
+      <BlogHomeLayout statics={statics} />
     </>
   );
 };
 
 export type Statics = {
-  statistics:{
-    viewNum:number,
-    likeNum:number,
-    articleNum:number
-  }
-}
+  statistics: {
+    viewNum: number;
+    likeNum: number;
+    articleNum: number;
+  };
+};
 
 export type HomeProps = {
-  user: SysUser;
-  statics:Statics
+  statics: Statics;
 };
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async (
   context
 ) => {
-  const user = (await sxios.get("/user/admin")) ?? null;
-  const statics = (await sxios.get("/system/indexData")) ?? null;
+  const statics = (await sxios.get("/v1/api/system/indexData")) ?? null;
 
   return {
     props: {
-      user,
-      statics
+      statics,
     },
   };
 };
 
 export function BlogHomeLayout({
-  user,statics
+  statics,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
       <MainLayout
         header={<BlogHeader />}
         content={<BlogHomeContent />}
-        rightSider={<RightSider user={user} />}
+        rightSider={<RightSider />}
         footer={<BlogFooter />}
       ></MainLayout>
     </>
   );
 }
 
-export type RightSiderProps = {
-  user: SysUser;
-};
+export type RightSiderProps = {};
 
-export function RightSider({ user }: RightSiderProps) {
+export function RightSider({}: RightSiderProps) {
   return (
     <>
       <Space
-        style={{ width: '100%' }}
-        spacing={'medium'}
+        style={{ width: "100%" }}
+        spacing={"medium"}
         vertical={true}
-        align={'start'}
+        align={"start"}
       >
         {/* 打卡感觉没啥必要 */}
         {/* <SmallComponent
@@ -105,11 +87,11 @@ export function RightSider({ user }: RightSiderProps) {
           }
           content={<ClockCalendar user={user} />}
         /> */}
-        <SmallComponent
+        {/* <SmallComponent
           align="start"
           title={<>人生倒计时</>}
           content={<LifeCountDown />}
-        />
+        /> */}
         {/* <SmallComponent
           title={<>标签云</>}
           content={<ClickTagCloud tags={tags} />}
@@ -122,13 +104,13 @@ export function RightSider({ user }: RightSiderProps) {
 export type LeftSiderProps = {
   user: SysUser;
   comments: CommentType[];
-  statics:Statics
+  statics: Statics;
 };
 
-export function LeftSider({ user, comments,statics }: LeftSiderProps) {
+export function LeftSider({ user, comments, statics }: LeftSiderProps) {
   return (
     <>
-      <Space spacing={'medium'} vertical={true} align={'start'}>
+      <Space spacing={"medium"} vertical={true} align={"start"}>
         <SmallComponent
           title={<>个人介绍</>}
           content={<UserInfo user={user} statics={statics} />}
